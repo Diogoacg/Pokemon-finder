@@ -2,8 +2,8 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import PokemonDisplay from "../components/PokemonDisplay"; // caminho atualizado para o componente
-import * as usePokemonHook from "../hooks/usePokemon"; // caminho atualizado para o hook
+import PokemonDisplay from "../components/PokemonDisplay";
+import * as usePokemonHook from "../hooks/usePokemon";
 
 jest.mock("../hooks/usePokemon");
 
