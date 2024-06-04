@@ -1,36 +1,70 @@
-## Available Scripts
+**Pokémon Finder App**
 
-In the project directory, you can run:
+Welcome to the Pokémon Finder App! This simple web application allows you to search for Pokémon by name or ID and view their details.
 
-### `npm start`
+### Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Search Bar**: Use the search bar to enter a Pokémon name or ID and find the Pokémon you're looking for.
+- **Pokémon Display**: View detailed information about the Pokémon you searched for, including its name, image, and navigation buttons to browse through other Pokémon.
+- **Error Handling**: If there's an issue fetching Pokémon data, the app will display an error message to notify you.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Technologies Used
 
-### `npm test`
+- **React**: Frontend library for building user interfaces.
+- **Axios**: Promise-based HTTP client for making requests to the Pokémon API.
+- **Testing Library (React Testing Library)**: Used for testing React components and user interactions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Decisions Made
 
-### `npm run build`
+- **Caching Pokémon Data**: To optimize performance and reduce API calls, Pokémon data fetched from the API is cached locally using an in-memory cache implemented in the `usePokemon` hook. This cache stores Pokémon data both by ID and name for efficient retrieval.
+- **Error Handling**: Error handling is implemented both in the `usePokemon` hook and the `SearchBar` component. If there's an error fetching Pokémon data, an error message is displayed to the user, providing feedback on what went wrong.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Testing**: Unit tests are written for key components such as `PokemonDisplay` and `SearchBar` using React Testing Library. These tests ensure that components render correctly and user interactions behave as expected.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run this app locally, follow these steps:
 
-### `npm run eject`
+1. **Clone the Repository**: Clone this repository to your local machine.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   git clone https://github.com/your-username/pokemon-finder.git
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Install Dependencies**: Navigate into the cloned repository and install the required dependencies using npm or yarn.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   cd pokemon-finder
+   npm install
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. **Run the App**: Start the development server to run the app locally.
+
+   ```bash
+   npm start
+   ```
+
+4. **Open in Browser**: Once the server is running, open your web browser and navigate to `http://localhost:3000` to view the app.
+
+### Testing
+
+To run the tests for this app, you can use the following command:
+
+```bash
+npm test
+```
+
+### Contributors
+
+- [Your Name](https://github.com/your-username)
+- [Diogoacg](https://github.com/Diogoacg)
+- [Davide Silva](https://github.com/davidesilva)
+- [Gabriel Poça](https://github.com/gabrielpoca)
+
+### Feedback and Contributions
+
+Feedback and contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request on GitHub.
+
+### License
+
+This project is licensed under the [MIT License](LICENSE).

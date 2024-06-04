@@ -1,6 +1,7 @@
 // components/SearchBar.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { getPokemonFromCache } from "../hooks/usePokemon";
 
 function SearchBar({ onSearch }) {
   const [input, setInput] = useState("");
@@ -35,7 +36,13 @@ function SearchBar({ onSearch }) {
       setError("Please enter a Pokémon name or id.");
       return;
     }
-    onSearch(input);
+
+    const cachedPokemon = getPokemonFromCache(input.toLowerCase());
+    if (cachedPokemon) {
+      onSearch(cachedPokemon.id); // Use o ID para a busca
+    } else {
+      onSearch(input);
+    }
   };
 
   return (
