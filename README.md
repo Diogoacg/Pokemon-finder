@@ -23,7 +23,7 @@ Welcome to the Pokémon Finder App! This simple web application allows you to se
 
 ### Getting Started
 
-You can access by `https://pokemonfinderchallenge.netlify.app/` or run it locally following this steps:
+You can access by https://pokemonfinderchallenge.netlify.app/ or run it locally following this steps:
 
 1. **Clone the Repository**: Clone this repository to your local machine.
 
