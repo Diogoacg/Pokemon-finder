@@ -54,10 +54,3 @@ To run the tests for this app, you can use the following command:
 npm test
 ```
 
-### Feedback and Contributions
-
-Feedback and contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request on GitHub.
-
-### License
-
-This project is licensed under the [MIT License](LICENSE).
