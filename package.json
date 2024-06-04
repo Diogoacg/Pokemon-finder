@@ -33,6 +33,7 @@
     ]
   },
   "name": "subvisualchallenge",
+  "homepage": "https://diogoacg.github.io/Apprenticeship-Developer---Coding-Challenge",
   "private": true,
   "scripts": {
     "predeploy": "npm run build",
