@@ -28,7 +28,7 @@ To run this app locally, follow these steps:
 1. **Clone the Repository**: Clone this repository to your local machine.
 
    ```bash
-   git clone https://github.com/](https://github.com/Diogoacg/Apprenticeship-Developer---Coding-Challenge
+   git clone https://github.com/Diogoacg/Apprenticeship-Developer---Coding-Challenge
    ```
 
 2. **Install Dependencies**: Navigate into the cloned repository and install the required dependencies using npm or yarn.
