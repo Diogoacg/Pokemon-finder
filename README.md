@@ -23,6 +23,8 @@ Welcome to the Pokémon Finder App! This simple web application allows you to se
 
 ### Getting Started
 
+You can access
+
 To run this app locally, follow these steps:
 
 1. **Clone the Repository**: Clone this repository to your local machine.
