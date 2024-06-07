@@ -28,7 +28,7 @@ You can access by https://pokemonfinderchallenge.netlify.app/ or run it locally 
 1. **Clone the Repository**: Clone this repository to your local machine.
 
    ```bash
-   git clone https://github.com/Diogoacg/Apprenticeship-Developer---Coding-Challenge
+   git clone https://github.com/Diogoacg/Pokemon-finder
    ```
 
 2. **Install Dependencies**: Navigate into the cloned repository and install the required dependencies using npm or yarn.
