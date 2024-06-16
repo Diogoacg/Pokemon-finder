@@ -14,8 +14,10 @@ function PokemonDisplay({ pokemonId, onNavigate }) {
     <div style={{ textAlign: "center" }}>
       {pokemon && (
         <>
-          <h1>{pokemon.name}</h1>
+          <h1>{pokemon.name.toUpperCase()}</h1>
+
           <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+          <h3>{"ID " + pokemon.id}</h3>
           <div>
             <button
               onClick={() => onNavigate(pokemon.id - 1)}
@@ -23,7 +25,12 @@ function PokemonDisplay({ pokemonId, onNavigate }) {
             >
               Previous
             </button>
-            <button onClick={() => onNavigate(pokemon.id + 1)}>Next</button>
+            <button
+              onClick={() => onNavigate(pokemon.id + 1)}
+              disabled={pokemon.id === 1025}
+            >
+              Next
+            </button>
           </div>
         </>
       )}
