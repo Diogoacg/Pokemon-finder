@@ -7,35 +7,29 @@ const pokemonCache = {};
 
 // Custom hook to fetch Pokémon data
 export const usePokemon = (idOrName) => {
-  // States to manage the Pokémon data and error message
   const [pokemon, setPokemon] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPokemon = async () => {
       try {
-        setError(null); // Reset the error message
-        // Check if the Pokémon data is already in the cache
+        setError(null);
         if (pokemonCache[idOrName]) {
           setPokemon(pokemonCache[idOrName]);
         } else {
           const response = await axios.get(
             `https://pokeapi.co/api/v2/pokemon/${idOrName}`
           );
-          // Store the Pokémon data in the cache
           const data = response.data;
-          console.log(data);
           pokemonCache[idOrName] = data;
-          pokemonCache[data.id] = data; // Store by id
-          pokemonCache[data.name] = data; // Store by name
+          pokemonCache[data.id] = data;
+          pokemonCache[data.name] = data;
           setPokemon(data);
         }
-        // If the request fails, set an error message
       } catch (err) {
         setError("No Pokémon found with that number or name.");
       }
     };
-    // Fetch the Pokémon data when the idOrName changes
     if (idOrName) {
       fetchPokemon();
     }
@@ -43,7 +37,37 @@ export const usePokemon = (idOrName) => {
   return { pokemon, error };
 };
 
-// Function to get Pokémon data from the cache
+export const usePokemonSpecies = (idOrName) => {
+  const [pokemonSpecies, setPokemonSpecies] = useState(null);
+  const [errorSpecies, setErrorSpecies] = useState(null);
+
+  useEffect(() => {
+    const fetchPokemonSpecies = async () => {
+      try {
+        setErrorSpecies(null);
+        if (pokemonCache[`species_${idOrName}`]) {
+          setPokemonSpecies(pokemonCache[`species_${idOrName}`]);
+        } else {
+          const response = await axios.get(
+            `https://pokeapi.co/api/v2/pokemon-species/${idOrName}`
+          );
+          const data = response.data;
+          pokemonCache[`species_${idOrName}`] = data;
+          pokemonCache[`species_${data.id}`] = data;
+          pokemonCache[`species_${data.name}`] = data;
+          setPokemonSpecies(data);
+        }
+      } catch (err) {
+        setErrorSpecies("No Pokémon species found with that number or name.");
+      }
+    };
+    if (idOrName) {
+      fetchPokemonSpecies();
+    }
+  }, [idOrName]);
+  return { pokemonSpecies, errorSpecies };
+};
+
 export const getPokemonFromCache = (idOrName) => {
   return pokemonCache[idOrName] || null;
 };
