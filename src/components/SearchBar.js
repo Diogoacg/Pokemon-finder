@@ -11,7 +11,7 @@ function SearchBar({ onSearch }) {
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
-        if (input) {
+        if (input.length >= 3) {
           const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1118`);
           const filteredSuggestions = response.data.results
             .map((pokemon) => pokemon.name)
@@ -38,7 +38,12 @@ function SearchBar({ onSearch }) {
     if (cachedPokemon) {
       onSearch(cachedPokemon.id);
     } else {
-      onSearch(input);
+      try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${input.toLowerCase()}`);
+        onSearch(response.data.id);
+      } catch (err) {
+        setError("No Pokémon found with that name or ID.");
+      }
     }
   };
 
@@ -53,10 +58,10 @@ function SearchBar({ onSearch }) {
         onChange={(e) => setInput(e.target.value)}
         error={!!error}
         helperText={error}
-        style={{ backgroundColor: '#3c5aa6', color: '#fff' , marginTop: "1rem" }}
+        style={{ backgroundColor: '#3c5aa6', color: '#fff', marginTop: "1rem" }}
       />
       {suggestions.length > 0 && (
-        <Paper style={{ marginTop: "1rem", backgroundColor: '#2a75bb', color: '#fff' }}>
+        <Paper style={{ marginTop: "1rem", backgroundColor: '#2a75bb', color: '#fff', maxHeight: '200px', overflowY: 'auto' }}>
           <List>
             {suggestions.map((suggestion) => (
               <ListItem button key={suggestion} onClick={() => setInput(suggestion)}>
@@ -67,12 +72,13 @@ function SearchBar({ onSearch }) {
         </Paper>
       )}
       <Button
-        type="submit" 
+        type="submit"
         variant="contained"
         fullWidth
         startIcon={<img src="https://img.icons8.com/ios/50/000000/pokeball--v1.png" alt="pokeball" />}
-        style={{ marginTop: "1rem", color: 'black' , backgroundColor: '#ffcb05' }} /* Pokémon Yellow with Dark Blue text */
+        style={{ marginTop: "1rem", color: 'black', backgroundColor: '#ffcb05' }} /* Pokémon Yellow with Dark Blue text */
       >
+        Search
       </Button>
     </Box>
   );

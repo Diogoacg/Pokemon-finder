@@ -9,16 +9,19 @@ function PokemonDisplay({ pokemonId }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('pokemonId:', pokemonId);
     setCurrentPokemonId(pokemonId);
   }, [pokemonId]);
 
   const handlePrevious = () => {
+    console.log('currentPokemonId:', currentPokemonId);
     if (currentPokemonId > 1) {
       setCurrentPokemonId(currentPokemonId - 1);
     }
   };
 
   const handleNext = () => {
+    console.log('currentPokemonId:', currentPokemonId);
     setCurrentPokemonId(currentPokemonId + 1);
   };
 
