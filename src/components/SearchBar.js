@@ -1,22 +1,19 @@
-// components/SearchBar.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getPokemonFromCache } from "../hooks/usePokemon";
+import { TextField, Button, Box, Paper, List, ListItem, ListItemText } from "@mui/material";
+import { yellow } from "@mui/material/colors";
 
 function SearchBar({ onSearch }) {
-  // States to manage the input value, error message, and suggestions
   const [input, setInput] = useState("");
   const [error, setError] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
 
-  // Fetch Pokémon list from the API and filter suggestions based on the input
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
         if (input) {
-          const response = await axios.get(
-            `https://pokeapi.co/api/v2/pokemon?limit=1118`
-          );
+          const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1118`);
           const filteredSuggestions = response.data.results
             .map((pokemon) => pokemon.name)
             .filter((name) => name.startsWith(input.toLowerCase()));
@@ -32,15 +29,12 @@ function SearchBar({ onSearch }) {
     fetchSuggestions();
   }, [input]);
 
-  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // if no input, show an error message
     if (!input) {
       setError("Please enter a Pokémon name or id.");
       return;
     }
-    // Check if the input is a cached Pokémon name
     const cachedPokemon = getPokemonFromCache(input.toLowerCase());
     if (cachedPokemon) {
       onSearch(cachedPokemon.id);
@@ -49,34 +43,41 @@ function SearchBar({ onSearch }) {
     }
   };
 
-  // Render the search bar with input, suggestions, and error message
   return (
-    <div className="search-bar">
-      <form onSubmit={handleSubmit} className="search-form">
-        <input
-          className="search-input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button className="search-button" type="submit">
-          Search
-        </button>
-      </form>
+    <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off">
+      <TextField
+        label="Search Pokémon"
+        variant="outlined"
+        color="#3c5aa6"
+        fullWidth
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        error={!!error}
+        helperText={error}
+        style={{ backgroundColor: '#3c5aa6', color: '#fff' , marginTop: "1rem" }}
+      
+      />
+      <Button
+      type="submit" 
+      variant="contained"
+      fullWidth
+      startIcon={<img src="https://img.icons8.com/ios/50/000000/pokeball--v1.png" />}
+      
+      style={{ marginTop: "1rem", color: 'black' , backgroundColor: '#ffcb05' }} /* Pokémon Yellow with Dark Blue text */
+      >
+      </Button>
       {suggestions.length > 0 && (
-        <div className="suggestions">
-          {suggestions.map((suggestion) => (
-            <div
-              key={suggestion}
-              className="suggestion"
-              onClick={() => setInput(suggestion)}
-            >
-              {suggestion}
-            </div>
-          ))}
-        </div>
+        <Paper style={{ marginTop: "1rem", backgroundColor: '#2a75bb', color: '#fff' }}>
+          <List>
+            {suggestions.map((suggestion) => (
+              <ListItem button key={suggestion} onClick={() => setInput(suggestion)}>
+                <ListItemText primary={suggestion} />
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
       )}
-      {error && <p className="error">{error}</p>}
-    </div>
+    </Box>
   );
 }
 

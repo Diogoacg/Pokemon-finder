@@ -1,7 +1,9 @@
-// App.js
 import React, { useState } from "react";
+import { Container, Box, Link } from "@mui/material";
 import SearchBar from "./components/SearchBar";
 import PokemonDisplay from "./components/PokemonDisplay";
+import "./styles.css";
+import "./styles/App.css"; // Importar o novo arquivo CSS
 
 function App() {
   const [pokemonId, setPokemonId] = useState(null);
@@ -15,29 +17,32 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ textAlign: "center" }}>
-      <header>
-        <h1>Pokémon Finder</h1>
-      </header>
-      <main style={{ marginTop: "2rem" }}>
+    <Container maxWidth="md" style={{ textAlign: "center", marginTop: "2rem" }}>
+      <h1 className="pokemon-finder-title">
+        Pokémon Finder
+      </h1>
+      <Box mt={4}>
         <SearchBar onSearch={handleSearch} />
-        {pokemonId && (
+      </Box>
+      {pokemonId && (
+        <Box mt={4}>
           <PokemonDisplay pokemonId={pokemonId} onNavigate={handleNavigate} />
-        )}
-      </main>
-      <footer>
-        <p>
+        </Box>
+      )}
+      <Box mt={4}>
+        <p 
+        className="footer"
+        >
           Made by{" "}
-          <a
-            href="https://github.com/Diogoacg"
-            target="_blank"
-            rel="noreferrer"
+          <Link 
+          color="inherit"
+          href="https://github.com/Diogoacg" target="_blank" rel="noreferrer"
           >
             Diogoacg
-          </a>
+          </Link>
         </p>
-      </footer>
-    </div>
+      </Box>
+    </Container>
   );
 }
 

@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap");
 body {
   margin: 0;
+  font-family: 'Dela Gothic One', cursive;
   background: linear-gradient(to right, #3c5aa6, #2a75bb); /* Pokémon Dark Blue to Light Blue */
+  color: #333;
 }
 
 #root {
@@ -11,3 +13,17 @@ body {
   min-height: 100vh;
   text-align: center;
 }
+
+
+.pokemon-finder-title {
+    color: #ffcb05;
+    font-family: 'Dela Gothic One', cursive;
+    font-size: 3rem;
+    -webkit-text-stroke: 1px black;
+  }
+/* normal text and fonts */
+  .footer {
+    color: white;
+    font-size: 1rem;
+    font-weight: lighter;
+  }
