@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePokemon } from "../hooks/usePokemon";
 import { Box, Typography, Button, Paper } from "@mui/material";
 
 function PokemonDisplay({ pokemonId }) {
-  const { pokemon, error } = usePokemon(pokemonId);
+  const [currentPokemonId, setCurrentPokemonId] = useState(pokemonId);
+  const { pokemon, error } = usePokemon(currentPokemonId);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setCurrentPokemonId(pokemonId);
+  }, [pokemonId]);
+
+  const handlePrevious = () => {
+    if (currentPokemonId > 1) {
+      setCurrentPokemonId(currentPokemonId - 1);
+    }
+  };
+
+  const handleNext = () => {
+    setCurrentPokemonId(currentPokemonId + 1);
+  };
 
   if (!pokemon && !error) return null;
 
@@ -16,6 +31,9 @@ function PokemonDisplay({ pokemonId }) {
           <Typography variant="h4" component="h2">
             {pokemon.name.toUpperCase()}
           </Typography>
+          <Typography variant="body1" component="p">
+            {pokemon.id}
+          </Typography>
           <img
             src={pokemon.sprites.front_default}
             alt={pokemon.name}
@@ -25,16 +43,16 @@ function PokemonDisplay({ pokemonId }) {
           <Box mt={2}>
             <Button
               variant="contained"
-              onClick={() => navigate(`/pokemon/${pokemon.id - 1}`)}
-              disabled={pokemon.id === 1}
+              onClick={handlePrevious}
+              disabled={currentPokemonId === 1}
               style={{ marginRight: "1rem", backgroundColor: '#ffcb05', color: '#3c5aa6', fontWeight: 'bold' }}
             >
               Previous
             </Button>
             <Button
               variant="contained"
-              onClick={() => navigate(`/pokemon/${pokemon.id + 1}`)}
-              disabled={pokemon.id === 1025}
+              onClick={handleNext}
+              disabled={currentPokemonId === 1025}
               style={{ backgroundColor: '#ffcb05', color: '#3c5aa6', fontWeight: 'bold' }}
             >
               Next

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { usePokemon, usePokemonSpecies } from "../hooks/usePokemon";
-import { Container, Typography, Box, Paper, Grid2, CircularProgress } from "@mui/material";
+import { Container, Typography, Box, Paper, Grid2} from "@mui/material";
 
 function PokemonDetails() {
   const { id } = useParams();
   const { pokemon, error } = usePokemon(id);
   const { pokemonSpecies, errorSpecies } = usePokemonSpecies(id);
-  const [loading, setLoading] = useState(true);
 
   
   if (!pokemon && !error) return null;
