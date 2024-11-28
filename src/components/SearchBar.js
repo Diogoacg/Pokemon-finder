@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getPokemonFromCache } from "../hooks/usePokemon";
 import { TextField, Button, Box, Paper, List, ListItem, ListItemText } from "@mui/material";
-import { yellow } from "@mui/material/colors";
 
 function SearchBar({ onSearch }) {
   const [input, setInput] = useState("");
@@ -61,7 +60,7 @@ function SearchBar({ onSearch }) {
       type="submit" 
       variant="contained"
       fullWidth
-      startIcon={<img src="https://img.icons8.com/ios/50/000000/pokeball--v1.png" />}
+      startIcon={<img src="https://img.icons8.com/ios/50/000000/pokeball--v1.png" alt="pokeball" />}
       
       style={{ marginTop: "1rem", color: 'black' , backgroundColor: '#ffcb05' }} /* Pokémon Yellow with Dark Blue text */
       >
