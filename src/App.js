@@ -30,14 +30,9 @@ function App() {
         </Box>
       )}
       <Box mt={4}>
-        <p 
-        className="footer"
-        >
+        <p className="footer">
           Made by{" "}
-          <Link 
-          color="inherit"
-          href="https://github.com/Diogoacg" target="_blank" rel="noreferrer"
-          >
+          <Link color="inherit" href="https://github.com/Diogoacg" target="_blank" rel="noreferrer">
             Diogoacg
           </Link>
         </p>

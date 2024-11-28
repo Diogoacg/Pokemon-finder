@@ -54,17 +54,7 @@ function SearchBar({ onSearch }) {
         error={!!error}
         helperText={error}
         style={{ backgroundColor: '#3c5aa6', color: '#fff' , marginTop: "1rem" }}
-      
       />
-      <Button
-      type="submit" 
-      variant="contained"
-      fullWidth
-      startIcon={<img src="https://img.icons8.com/ios/50/000000/pokeball--v1.png" alt="pokeball" />}
-      
-      style={{ marginTop: "1rem", color: 'black' , backgroundColor: '#ffcb05' }} /* Pokémon Yellow with Dark Blue text */
-      >
-      </Button>
       {suggestions.length > 0 && (
         <Paper style={{ marginTop: "1rem", backgroundColor: '#2a75bb', color: '#fff' }}>
           <List>
@@ -76,6 +66,14 @@ function SearchBar({ onSearch }) {
           </List>
         </Paper>
       )}
+      <Button
+        type="submit" 
+        variant="contained"
+        fullWidth
+        startIcon={<img src="https://img.icons8.com/ios/50/000000/pokeball--v1.png" alt="pokeball" />}
+        style={{ marginTop: "1rem", color: 'black' , backgroundColor: '#ffcb05' }} /* Pokémon Yellow with Dark Blue text */
+      >
+      </Button>
     </Box>
   );
 }
