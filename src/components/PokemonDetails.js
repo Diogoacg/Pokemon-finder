@@ -1,25 +1,16 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import { usePokemon, usePokemonSpecies } from "../hooks/usePokemon";
-import { Container, Typography, Box, Paper, Grid2} from "@mui/material";
+import { Container, Typography, Box, Paper, Grid2 } from "@mui/material";
 
 function PokemonDetails() {
   const { id } = useParams();
   const { pokemon, error } = usePokemon(id);
   const { pokemonSpecies, errorSpecies } = usePokemonSpecies(id);
 
-  
   if (!pokemon && !error) return null;
-  // if (!pokemonSpecies && !errorSpecies) retorna um erro e volta para a página inicial
-  if (!pokemonSpecies && !errorSpecies) {
-    return (
-        <Container maxWidth="sm" style={{ textAlign: "center", marginTop: "2rem" }}>
-            <Typography variant="body1" color="error" style={{ marginTop: "1rem" }}>
-                {errorSpecies}
-            </Typography>
-        </Container>
-    );
-    }
-  
+  if (!pokemonSpecies && !errorSpecies) return null;
+
   const normalizeText = (text) => {
     return text
       .replace(/\n/g, ' ') // Substitui quebras de linha por espaços
@@ -27,17 +18,8 @@ function PokemonDetails() {
       .toLowerCase()
       .replace(/(^\w|\.\s*\w)/g, (c) => c.toUpperCase()); // Capitaliza a primeira letra de cada sentença
   };
-  
-  console.log('pokemonSpecies:', pokemonSpecies);
 
-  // Encontra a entrada de texto em inglês se nao encontrar retorna vazio
-  
-  const flavorText = pokemonSpecies.flavor_text_entries.find(
-    (entry) => entry.language.name === "en"
-    )?.flavor_text;
-    
-  
-  console.log('flavorText:', flavorText);
+  const flavorText = pokemonSpecies?.flavor_text_entries?.find(entry => entry.language.name === 'en')?.flavor_text;
 
   return (
     <Container maxWidth="sm" style={{ textAlign: "center", marginTop: "2rem" }}>
@@ -74,13 +56,15 @@ function PokemonDetails() {
                   </Typography>
                 </Paper>
               </Grid2>
-              <Grid2 item xs={12}>
-                <Paper elevation={1} style={{ padding: "1rem", backgroundColor: '#f5f5f5' }}>
-                  <Typography variant="body1" component="p" style={{ fontStyle: 'italic' }}>
-                    {flavorText && normalizeText(flavorText)}
-                  </Typography>
-                </Paper>
-              </Grid2>
+              {flavorText && (
+                <Grid2 item xs={12}>
+                  <Paper elevation={1} style={{ padding: "1rem", backgroundColor: '#f5f5f5' }}>
+                    <Typography variant="body1" component="p" style={{ fontStyle: 'italic' }}>
+                      {normalizeText(flavorText)}
+                    </Typography>
+                  </Paper>
+                </Grid2>
+              )}
             </Grid2>
           </Box>
         </>
